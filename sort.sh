@@ -16,12 +16,13 @@ set -o pipefail
 # set -o verbose
 
 
+# sort using -n built in parameter
 time tr ' ' '\n' < file.txt | sort -nu > /dev/null
 
+# Sort uniq uniq
 time tr ' ' '\n' < file.txt |  sort | uniq > /dev/null
 
-# time for item in "${data[@]}"; do items[$item]=1; done
-
+# Sort uniq hashing
 declare -A items=()
 time while IFS=' ' read -r item; do items[$item]=$item; done < file.txt
 echo "${items[@]}"
